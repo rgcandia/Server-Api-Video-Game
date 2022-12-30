@@ -1,4 +1,5 @@
 const { response } = require('express');
+const fetch = require("node-fetch-commonjs")
 const {Videogame,Genre} =  require('../../db');
 const {API_URL_VIDEOGAME,API_KEY} =  process.env;
 
