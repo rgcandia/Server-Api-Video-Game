@@ -1,4 +1,4 @@
-const fetch = require('node-fetch-commonjs')
+require("node-fetch-commonjs")
 
 //trae la info genres de la API externa, y crea las tablas.
 const setTableGenres = (model,url,key)=>{
