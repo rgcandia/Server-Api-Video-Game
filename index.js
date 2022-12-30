@@ -24,7 +24,7 @@ require('dotenv').config();
 const {API_URL_GENRE,API_KEY} =  process.env;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen('0.0.0.0:$PORT', () => {
   setTableGenres(Genre,API_URL_GENRE,API_KEY)
   ;// Inicializa la tabla Genres.
   console.log('%s listening at 3001'); // eslint-disable-line no-console
