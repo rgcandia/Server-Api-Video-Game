@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const  fetch = require ('node-fetch');
 
 //trae la info genres de la API externa, y crea las tablas.
 const setTableGenres = (model,url,key)=>{
