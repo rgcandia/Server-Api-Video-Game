@@ -20,6 +20,7 @@
 const server = require('./src/app.js');
 const { conn,Genre } = require('./src/db.js');
 const {setTableGenres} =  require('./src/api_rawg/index.js');
+require('dotenv').config();
 const {API_URL_GENRE,API_KEY} =  process.env;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
