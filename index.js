@@ -21,10 +21,10 @@ const server = require('./src/app.js');
 const { conn,Genre } = require('./src/db.js');
 const {setTableGenres} =  require('./src/api_rawg/index.js');
 require('dotenv').config();
-const {API_URL_GENRE,API_KEY} =  process.env;
+const {API_URL_GENRE,API_KEY,$PORT} =  process.env;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen('0.0.0.0:$PORT', () => {
+  server.listen($PORT, () => {
   setTableGenres(Genre,API_URL_GENRE,API_KEY)
   ;// Inicializa la tabla Genres.
   console.log('%s listening at0.0.0.0:$PORT'); // eslint-disable-line no-console
