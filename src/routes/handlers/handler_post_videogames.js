@@ -4,9 +4,9 @@ module.exports=async (req,res)=>{
     const img_default = "https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
     if (image===''){background_image=img_default}
     else{background_image=image}
- 
+    let name_r = name.toLowerCase();
     let gameCreated = await Videogame.create({
-        name,
+        name_r,
         description,
         released,
         rating,
