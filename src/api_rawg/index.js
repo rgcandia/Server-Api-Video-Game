@@ -23,34 +23,68 @@ const setTableGenres = (model,url,key)=>{
 ///////////////////////// Retorna un array con 100 videojuegos
 const getVideoGames= async (url,key)=>{
    let games =[];
+   let arrayPromise =[];
    let count = 1;
    const amount=50; // Cantidad ede juegos que voy a traer a mi db.
    while(count<=amount){
       let promise=  fetch(url+`/${count}?key=`+key)
       .then(response=>response.json())
-      .then(game=> {
-         if(game.name){
-          const obj = {
-                 id:game.id,
-               name:game.name.toLowerCase(),
-                  description:game.description,
-                  released:game.released,
-                  rating:game.ratings.map(e=>e),
-                  platforms:game.platforms.map(e=>e.platform),
-                  background_image:game.background_image,
-                  genres:game.genres.map(e=>e.name),
-            }
-           
-           return obj; 
-         }
-         })
-         .catch(error=>console.log(error))
-    let value = await promise;
-    if(value!=null){games.push(value);  } 
+      .catch(error=>console.log(error))
+      arrayPromise.push(promise)
+      
     count++;
    }
-   return games;
+    games = await Promise.all(arrayPromise)
+    
+   return games.map(game=> {
+      if(game.name){
+       const obj = {
+              id:game.id,
+            name:game.name.toLowerCase(),
+               description:game.description,
+               released:game.released,
+               rating:game.ratings.map(e=>e),
+               platforms:game.platforms.map(e=>e.platform),
+               background_image:game.background_image,
+               genres:game.genres.map(e=>e.name),
+         }
+        
+        return obj; 
+      }
+
+      });
 }
+// const getVideoGames= async (url,key)=>{
+//    let games =[];
+//    let count = 1;
+//    const amount=50; // Cantidad ede juegos que voy a traer a mi db.
+//    while(count<=amount){
+//       let promise=  fetch(url+`/${count}?key=`+key)
+//       .then(response=>response.json())
+//       .then(game=> {
+//          if(game.name){
+//           const obj = {
+//                  id:game.id,
+//                name:game.name.toLowerCase(),
+//                   description:game.description,
+//                   released:game.released,
+//                   rating:game.ratings.map(e=>e),
+//                   platforms:game.platforms.map(e=>e.platform),
+//                   background_image:game.background_image,
+//                   genres:game.genres.map(e=>e.name),
+//             }
+           
+//            return obj; 
+//          }
+//          })
+//          .catch(error=>console.log(error))
+//     let value = await promise;
+    
+//     if(value!=null){games.push(value);  } 
+//     count++;
+//    }
+//    return games;
+// }
 
 /////Trae un array de resultados que coincidan con mi busqueda///////////
 const getGamesByName = async (name,url,key)=>{
