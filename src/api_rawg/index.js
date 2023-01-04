@@ -53,7 +53,7 @@ const getVideoGames= async (url,key)=>{
    }
     games = await Promise.all(arrayPromise)
     
-   return games;
+   return games.filter(e=>e!=null);
 }
 // const getVideoGames= async (url,key)=>{
 //    let games =[];
