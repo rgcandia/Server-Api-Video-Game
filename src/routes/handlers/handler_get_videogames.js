@@ -30,7 +30,7 @@ else{
     
     match.length? 
     res.status(200).send(match):
-    res.status(404).send('No está el juego buscado');
+    res.status(404).send({type:"error",menssage:"No existe ese video game"});
 
 }
 
