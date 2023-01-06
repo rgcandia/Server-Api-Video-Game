@@ -25,7 +25,7 @@ const getVideoGames= async (url,key)=>{
    let games =[];
    let arrayPromise =[];
    let count = 1;
-   const amount=50; // Cantidad ede juegos que voy a traer a mi db.
+   const amount=100; // Cantidad ede juegos que voy a traer a mi db.
    while(count<=amount){
       let promise=  fetch(url+`/${count}?key=`+key)
       .then(response=>response.json())
